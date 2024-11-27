@@ -184,7 +184,7 @@ body {
 
 .task input:focus,
 .task input:hover {
-  border-bottom: 3px solid var(--c-primary);
+  border-bottom: 3px solid var(--c-dropdown-focus-border);
 }
 
 .task button {

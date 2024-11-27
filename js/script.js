@@ -1,6 +1,6 @@
 //<div class="card" draggable="true"> <div class="status todo"></div> <div class="content">Dinamicamente.</div></div>
 const data = {
-  "Todos": { "func": ["Ana Carolina", "Janete", "Laiz"], "atv": ["atv1", "atv2", "atv3"] },
+  "Gerencia": { "func": ["Ana Carolina", "Janete", "Laiz"], "atv": ["atv1", "atv2", "atv3"] },
   "Certificado Digital": {"func":["Ana Leticia"]},
   "Pessoal": {"func":["Barbara", "Nara"]},
   "Fiscal": {"func":["Edimarcos", "Marilía"]},
@@ -50,13 +50,13 @@ function addCard(value) {
       </select>
     </div>
     <div class="employee-dropdown">
-      <label for="employee-options">Funcionários:</label>
+      <label for="employee-options">Funcionário:</label>
       <select id="employee-options" name="employee-options">
         <option value="*">Nenhum</option>
       </select>
     </div>
     <div class="activity-dropdown">
-      <label for="activity-options">Atividades:</label>
+      <label for="activity-options">Atividade:</label>
       <select id="activity-options" name="activity-options">
         <option value="*">Nenhuma</option>
       </select>

@@ -1,6 +1,6 @@
 //<div class="card" draggable="true"> <div class="status todo"></div> <div class="content">Dinamicamente.</div></div>
 const data = {
-  "Gerencia": { "func": ["Ana Carolina", "Janete", "Laiz"], "atv": ["atv1", "atv2", "atv3"] },
+  "Gerência": { "func": ["Ana Carolina", "Janete", "Laiz"], "atv": ["atv1", "atv2", "atv3"] },
   "Certificado Digital": {"func":["Ana Leticia"]},
   "Pessoal": {"func":["Barbara", "Nara"]},
   "Fiscal": {"func":["Edimarcos", "Marilía"]},

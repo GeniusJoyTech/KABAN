@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#fd951fcc" />
-  <title>Simplifica Contabilidade</title>
+  <title>To do Simplifica</title>
 
   <meta name="description" content="Um simples quadro kanban.">
   <meta name="keywords"
@@ -20,20 +20,33 @@
 
 <body>
   <!-- Filtro de Departamento -->
-   <div class="">
-    
-  <div class="dropdown-container">
-    
-  </div>
+  <div class="">
 
-   </div>
-   <div class="boards">
+    <div class="dropdown-container">
+      <label for="departmentFilter">Filtrar por Departamento:</label>
+      <select id="departmentFilter">
+        <option value="all">Todos</option>
+        <option value="*">Não escolhido</option>
+        <option value="Gerência">Gerência</option>
+        <option value="Certificado Digital">Certificado Digital</option>
+        <option value="Pessoal">Pessoal</option>
+        <option value="Fiscal">Fiscal</option>
+        <option value="Suporte T.I.">Suporte T.I.</option>
+        <option value="Legalização de empresas">Legalização de empresas</option>
+        <option value="Contabil">Contabil</option>
+        <option value="Financeiro">Financeiro</option>
+        <option value="Secretaria">Secretaria</option>
+      </select>
+    </div>
+
+  </div>
+  <div class="boards">
     <!-- Quadro de tarefas para fazer -->
     <div class="board">
       <h2>Iniciar</h2>
       <div class="dropZone" id="todo">
         <!-- Cartões de tarefas -->
-        
+
       </div>
     </div>
     <!-- Quadro de tarefas sendo feitas -->

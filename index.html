@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fd951fcc" />
+  <title>Simplifica Contabilidade</title>
+
+  <meta name="description" content="Um simples quadro kanban.">
+  <meta name="keywords"
+    content="Kanban, Quadro kanban, board kanban, metodologia ágil, drag and drop, JavaScript, Vanilla JS, HTML, HTML5, CSS, CSS3">
+
+  <meta name="robots" content="index">
+
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <!-- Filtro de Departamento -->
+   <div class="">
+    
+  <div class="dropdown-container">
+    <label for="departmentFilter">Filtrar por Departamento:</label>
+    <select id="departmentFilter">
+      <option value="all">Todos</option>
+      <option value="Fiscal">Fiscal</option>
+      <option value="Contábil">Contábil</option>
+      <option value="Pessoal">Pessoal</option>
+      <option value="Escrita">Escrita</option>
+      <option value="Supervisão">Supervisão</option>
+      <option value="Suporte">Suporte</option>
+    </select>
+  </div>
+
+   </div>
+   <div class="boards">
+    <!-- Quadro de tarefas para fazer -->
+    <div class="board">
+      <h2>Iniciar</h2>
+      <div class="dropZone" id="todo">
+        <!-- Cartões de tarefas -->
+        
+      </div>
+    </div>
+    <!-- Quadro de tarefas sendo feitas -->
+    <div class="board">
+      <h2>Fazendo</h2>
+      <div class="dropZone" id="doing">
+      </div>
+    </div>
+    <!-- Quadro de tarefas já feitas -->
+    <div class="board">
+      <h2>Feito!</h2>
+      <div class="dropZone" id="done">
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="task">
+      <h2><label for="task">Adicionar Tarefa</label></h2>
+      <form id="addTask" action="POST">
+        <input id="task" name="task" type="text" autocomplete="off">
+        <button type="submit">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus"
+            class="svg-inline--fa fa-plus fa-w-14 svg-icon" role="img" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512">
+            <path
+              d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
+            </path>
+          </svg>
+        </button>
+      </form>
+    </div>
+    <div class="info">
+      <h2 class="logo">Simplifica Contabilidade</h2>
+    </div>
+    <div class="garbage">
+      <h2>Garbage</h2>
+      <div class="dropZone" id="garbage">
+        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="trash-alt"
+          class="svg-inline--fa fa-trash-alt fa-w-14 svg-icon" role="img" xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512">
+          <path
+            d="M268 416h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12zM432 80h-82.41l-34-56.7A48 48 0 0 0 274.41 0H173.59a48 48 0 0 0-41.16 23.3L98.41 80H16A16 16 0 0 0 0 96v16a16 16 0 0 0 16 16h16v336a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128h16a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16zM171.84 50.91A6 6 0 0 1 177 48h94a6 6 0 0 1 5.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12z">
+          </path>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="./js/script.js" defer></script>
+</body>
+<script>
+  const departmentFilter = document.getElementById('departmentFilter');
+
+  // Função para filtrar as tarefas pelo departamento
+  departmentFilter.addEventListener('change', function () {
+    const selectedDepartment = departmentFilter.value;
+
+    const allCards = document.querySelectorAll('.card');
+
+    allCards.forEach(card => {
+      const department = card.querySelector('select').value; // Captura o valor do departamento no card
+      if (selectedDepartment === 'all' || department === selectedDepartment) {
+        card.style.display = 'block'; // Exibe o card
+      } else {
+        card.style.display = 'none'; // Esconde o card
+      }
+    });
+  });
+
+</script>
+
+</html>

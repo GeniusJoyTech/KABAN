@@ -3,8 +3,8 @@
 const formTask = document.getElementById('addTask');
 const task = document.getElementById('task');
 
-formTask.addEventListener('submit', ( event ) => {
-  if(task.value != ''){
+formTask.addEventListener('submit', (event) => {
+  if (task.value != '') {
     addCard(task.value);
     task.value = '';
   }
@@ -13,7 +13,7 @@ formTask.addEventListener('submit', ( event ) => {
 
 // QUando o usuário clica no botão de +
 function addCard(value) {
-  const todo  = document.querySelector('#todo');
+  const todo = document.querySelector('#todo');
   const newCard = document.createElement("div");
   newCard.classList.add('card');
   newCard.draggable = true;
@@ -54,7 +54,7 @@ function addCard(value) {
         <option value="Nara">Nara</option>
       </select>
       </div>
-    <div class="dropdown-container">
+      <div class="dropdown-container">
 
       <label for="task-options2">Atividade:</label>
       <select id="task-options" name="task-options">
@@ -65,26 +65,26 @@ function addCard(value) {
       </select>
       </div>
   `;
-  newCard.addEventListener( 'dragstart', dragStart );
-  newCard.addEventListener( 'drag', drag );
-  newCard.addEventListener( 'dragend', dragEnd );
+  newCard.addEventListener('dragstart', dragStart);
+  newCard.addEventListener('drag', drag);
+  newCard.addEventListener('dragend', dragEnd);
   todo.appendChild(newCard);
 }
 
 const cards = document.querySelectorAll('.card');
 const dropZones = document.querySelectorAll('.dropZone');
 
-cards.forEach( (card) => {
-  card.addEventListener( 'dragstart', dragStart );
-  card.addEventListener( 'drag', drag );
-  card.addEventListener( 'dragend', dragEnd );
+cards.forEach((card) => {
+  card.addEventListener('dragstart', dragStart);
+  card.addEventListener('drag', drag);
+  card.addEventListener('dragend', dragEnd);
 })
 
 function dragStart() {
-  dropZones.forEach( dropZone => dropZone.classList.add('highlight'));
+  dropZones.forEach(dropZone => dropZone.classList.add('highlight'));
   this.classList.add('dragging');
 
-  switch(this.parentElement.id) {
+  switch (this.parentElement.id) {
     case 'todo':
       this.firstElementChild.classList.remove('todo');
       break;
@@ -103,14 +103,14 @@ function dragStart() {
 }
 
 function drag() {
-  
+
 }
 
 function dragEnd() {
-  dropZones.forEach( dropZone => dropZone.classList.remove('highlight'));
+  dropZones.forEach(dropZone => dropZone.classList.remove('highlight'));
   this.classList.remove('dragging');
-  
-  switch(this.parentElement.id) {
+
+  switch (this.parentElement.id) {
     case 'todo':
       this.firstElementChild.classList.add('todo');
       break;
@@ -128,11 +128,11 @@ function dragEnd() {
   }
 }
 
-dropZones.forEach( dropZone => {
-  dropZone.addEventListener( 'dragenter', dragEnter );
-  dropZone.addEventListener( 'dragover', dragOver );
-  dropZone.addEventListener( 'dragleave', dragLeave );
-  dropZone.addEventListener( 'drop', drop);
+dropZones.forEach(dropZone => {
+  dropZone.addEventListener('dragenter', dragEnter);
+  dropZone.addEventListener('dragover', dragOver);
+  dropZone.addEventListener('dragleave', dragLeave);
+  dropZone.addEventListener('drop', drop);
 })
 
 function dragEnter() {
@@ -143,7 +143,7 @@ function dragOver() {
   this.classList.add('over');
 
   const cardBeingDragged = document.querySelector('.dragging');
- 
+
   this.appendChild(cardBeingDragged);
 }
 

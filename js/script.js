@@ -1,4 +1,15 @@
 //<div class="card" draggable="true"> <div class="status todo"></div> <div class="content">Dinamicamente.</div></div>
+const data = {
+  "Todos": { "func": ["Ana Carolina", "Janete", "Laiz"], "atv": ["atv1", "atv2", "atv3"] },
+  "Certificado Digital": {"func":["Ana Leticia"]},
+  "Pessoal": {"func":["Barbara", "Nara"]},
+  "Fiscal": {"func":["Edimarcos", "Marilía"]},
+  "Suporte T.I.": {"func":["Gabriel"]},
+  "Legalização de empresas": {"func":["Guilherme", "Lucas"]},
+  "Financeiro": {"func":["Jéssica"]},
+  "Secretaria": {"func":["Luísa"]},
+  "Contabil": {"func":["Mariana", "Michele", "Natália"]}
+}
 
 const formTask = document.getElementById('addTask');
 const task = document.getElementById('task');
@@ -13,10 +24,20 @@ formTask.addEventListener('submit', (event) => {
 
 // QUando o usuário clica no botão de +
 function addCard(value) {
+  // Transformando o objeto 'data' em um Map
+  const depto = Object.keys(data);
+  
+  // Gerando as opções para o select dos departamentos
+  const options = depto.map(d => {
+    return `<option value="${d}">${d}</option>`;
+  }).join('');  // Junta todas as opções em uma única string
+
   const todo = document.querySelector('#todo');
   const newCard = document.createElement("div");
   newCard.classList.add('card');
   newCard.draggable = true;
+  
+  // HTML inicial do card
   newCard.innerHTML = `
     <div class="status todo"></div>
     <div class="content"><p>${value}</p></div>
@@ -25,51 +46,76 @@ function addCard(value) {
       <label for="task-options">Departamento:</label>
       <select id="task-options" name="task-options">
         <option value="*">Não escolhido</option>
-        <option value="Fiscal">Fiscal</option>
-        <option value="Contábil">Contábil</option>
-        <option value="Pessoal">Pessoal</option>
-        <option value="Escrita">Escrita</option>
-        <option value="Supervisão">Supervisão</option>
-        <option value="Suporte">Suporte</option>
+        ${options}
       </select>
     </div>
-    <div class="dropdown-container">
-    
-      <label for="task-options1">Responsável:</label>
-      <select id="task-options1" name="task-options">
-        <option value="*">Não escolhido</option>
-        <option value="Ana Carolina">Ana Carolina</option>
-        <option value="Ana Leticia">Ana Leticia</option>
-        <option value="Barbara">Barbara</option>
-        <option value="Edimarcos">Edimarcos</option>
-        <option value="Gabriel">Gabriel</option>
-        <option value="Guilherme">Guilherme</option>
-        <option value="Janete">Janete</option>
-        <option value="Jéssica">Jéssica</option>
-        <option value="Laiz">Laiz</option>
-        <option value="Lucas">Lucas</option>
-        <option value="Luísa">Luísa</option>
-        <option value="Mariana">Mariana</option>
-        <option value="Marilía">Marilía</option>
-        <option value="Nara">Nara</option>
+    <div class="employee-dropdown">
+      <label for="employee-options">Funcionários:</label>
+      <select id="employee-options" name="employee-options">
+        <option value="*">Nenhum</option>
       </select>
-      </div>
-      <div class="dropdown-container">
-
-      <label for="task-options2">Atividade:</label>
-      <select id="task-options" name="task-options">
-        <option value="*">Não escolhido</option>
-        <option value="opcao2">Atividade1</option>
-        <option value="opcao2">Atividade2</option>
-        <option value="opcao2">Atividade3</option>
+    </div>
+    <div class="activity-dropdown">
+      <label for="activity-options">Atividades:</label>
+      <select id="activity-options" name="activity-options">
+        <option value="*">Nenhuma</option>
       </select>
-      </div>
+    </div>
   `;
+
+  // Adicionando o evento 'change' no select do departamento para atualizar a lista de funcionários e atividades
+  const selectDept = newCard.querySelector('#task-options');
+  const selectEmployee = newCard.querySelector('#employee-options');
+  const selectActivity = newCard.querySelector('#activity-options');
+  
+  selectDept.addEventListener('change', (event) => {
+    const dept = event.target.value;  // O departamento selecionado
+    updateEmployeeDropdown(dept, selectEmployee);  // Atualiza a lista de funcionários no dropdown
+    updateActivityDropdown(dept, selectActivity);  // Atualiza a lista de atividades no dropdown
+  });
+
+  // Adicionando os eventos de arrastar (drag)
   newCard.addEventListener('dragstart', dragStart);
   newCard.addEventListener('drag', drag);
   newCard.addEventListener('dragend', dragEnd);
+
   todo.appendChild(newCard);
 }
+
+// Função para atualizar o dropdown de funcionários
+function updateEmployeeDropdown(department, selectEmployee) {
+  // Limpa as opções anteriores
+  selectEmployee.innerHTML = '<option value="*">Nenhum</option>';
+
+  // Verifica se o departamento foi selecionado e adiciona os funcionários
+  if (department !== '*' && data[department]) {
+    const employees = data[department].func;
+    employees.forEach(employee => {
+      const option = document.createElement('option');
+      option.value = employee;
+      option.textContent = employee;
+      selectEmployee.appendChild(option);
+    });
+  }
+}
+
+// Função para atualizar o dropdown de atividades
+function updateActivityDropdown(department, selectActivity) {
+  // Limpa as opções anteriores
+  selectActivity.innerHTML = '<option value="*">Nenhuma</option>';
+
+  // Verifica se o departamento foi selecionado e adiciona as atividades
+  if (department !== '*' && data[department] && data[department].atv) {
+    const activities = data[department].atv;
+    activities.forEach(activity => {
+      const option = document.createElement('option');
+      option.value = activity;
+      option.textContent = activity;
+      selectActivity.appendChild(option);
+    });
+  }
+}
+
 
 const cards = document.querySelectorAll('.card');
 const dropZones = document.querySelectorAll('.dropZone');
